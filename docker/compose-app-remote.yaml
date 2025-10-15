@@ -1,0 +1,20 @@
+version: '3.9'
+
+name: example-api
+
+services:
+  app:
+    build:
+      context: ./boot
+      dockerfile: Dockerfile
+    container_name: boot
+    restart: unless-stopped
+    env_file:
+      - '../env/.env'
+    environment:
+      SPRING_ACTIVE_PROFILE: ${SPRING_PROFILE}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${DB_DOMAIN}/${DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - '8080:8080'
