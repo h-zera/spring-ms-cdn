@@ -1,0 +1,25 @@
+version: '3.9'
+
+networks:
+  local:
+    name: example-api
+
+services:
+  db_postgres_examples:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: examples
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgres11-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - local
+
+volumes:
+  postgresql:
+  postgres11-data:
+    driver: local
