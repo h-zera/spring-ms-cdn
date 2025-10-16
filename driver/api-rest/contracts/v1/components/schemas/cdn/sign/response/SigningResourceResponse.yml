@@ -1,0 +1,5 @@
+title: FolderSigningResourceResponse
+type: object
+properties:
+  data:
+    $ref: './SigningResource.yml'

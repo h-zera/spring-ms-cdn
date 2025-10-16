@@ -1,0 +1,28 @@
+type: object
+title: SigningConfigResource
+properties:
+    expiresIn:
+        type: integer
+        description: The time in seconds until the signed URL expires
+        example: 36000
+        minimum: 1200
+        format: unsigned-int32
+    allowedCountries:
+        type: array
+        description: List of allowed countries (ISO 3166-1 alpha-2 codes), if empty all countries are allowed
+        items:
+            type: string
+            pattern: '^[A-Z]{2}$'
+        example: ["US", "GB", "FR"]
+    blockedCountries:
+        type: array
+        description: List of blocked countries (ISO 3166-1 alpha-2 codes), if empty no countries are blocked
+        items:
+            type: string
+            pattern: '^[A-Z]{2}$'
+        example: ["CN", "RU"]
+    remoteIp:
+        type: string
+        description: The IP address that is allowed to access the signed URL, if empty any IP is allowed
+        example: 127.0.0.1
+        format: ipv4

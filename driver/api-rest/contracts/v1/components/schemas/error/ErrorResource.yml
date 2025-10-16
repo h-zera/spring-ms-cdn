@@ -1,0 +1,20 @@
+title: ErrorResource
+type: object
+required:
+    - code
+    - description
+    - details
+properties:
+  code:
+    type: string
+  description:
+    type: string
+  details:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+        issue:
+          type: string
