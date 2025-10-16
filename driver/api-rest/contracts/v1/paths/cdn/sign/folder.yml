@@ -1,0 +1,49 @@
+post:
+  summary: Signing CDN folder
+  description: Generates a signed URL string that can be used to access all CDN files in a folder
+  operationId: signCdnFolder
+  tags:
+    - CdnSign
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../../components/schemas/cdn/sign/request/FolderSigningRequest.yml'
+  responses:
+    200:
+        description: Successful response with signed data
+        content:
+            application/json:
+              schema:
+                $ref: '../../../components/schemas/cdn/sign/response/SigningResourceResponse.yml'
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/error/ErrorResourceResponse.yml'
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/error/ErrorResourceResponse.yml'
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/error/ErrorResourceResponse.yml'
+    404:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/error/ErrorResourceResponse.yml'
+    500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/error/ErrorResourceResponse.yml'

@@ -1,0 +1,12 @@
+type: object
+title: FolderSigningRequest
+required:
+  - folderPath
+properties:
+    folderPath:
+        type: string
+        description: The path of the folder to be signed
+        pattern: ^/([a-zA-Z0-9_-]+/)*$
+        example: /my-folder/sub-folder/
+    config:
+        $ref: './SigningConfigResource.yml'

@@ -10,7 +10,7 @@ services:
     environment:
       POSTGRES_USER: sa
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: examples
+      POSTGRES_DB: ms_cdn
     volumes:
       - postgresql:/var/lib/postgresql
       - postgres11-data:/var/lib/postgresql/data
