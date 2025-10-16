@@ -1,0 +1,35 @@
+title: FolderSigningResource
+type: object
+properties:
+  urlPathToken:
+    type: string
+    description: The URL of the signed resource, folder defaults to path toke, file to query token
+    example: https://cdn.example.com/token=aiDhHXZGHidbDZZqIY14z1eHhhbZvMlzh_7u9cEIdfI&expires=1598024587&token_path=%2Fmy-partial%2Furl%2F/videos/
+  queryString:
+    type: string
+    description: The full query string to be appended to the URL for accessing the signed resource
+    example: token=aiDhHXZGHidbDZZqIY14z1eHhhbZvMlzh_7u9cEIdfI&expires=1598024587&token_path=%2Fmy-partial%2Furl%2F
+  queryParams:
+    type: array
+    description: The query parameters to be appended to the URL for accessing the signed resource
+    items:
+      type: object
+      properties:
+        param:
+          type: string
+          description: The name of the query parameter
+        value:
+          type: string
+          description: The value of the query parameter
+        alternateValue:
+          type: string
+          nullable: true
+          description: An alternate value for the query parameter, if applicable
+    example:
+        - param: token
+          value: aiDhHXZGHidbDZZqIY14z1eHhhbZvMlzh_7u9cEIdfI
+        - param: expires
+          value: 1598024587
+          alternateValue: 2025-10-14T16:38:05+00:00
+        - param: token_path
+          value: /my-partial/url/

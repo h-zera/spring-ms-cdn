@@ -1,0 +1,27 @@
+openapi: 3.0.1
+info:
+  title: API for CDN Microservice
+  version: v1
+
+tags:
+  - name: CdnSign
+    description: Operations related to CDN signing
+
+servers:
+  - url: http://localhost:8080
+    description: Development server
+
+paths:
+  /cdn/sign/folder:
+    $ref: './paths/cdn/sign/folder.yml'
+  /cdn/sign/file:
+    $ref: './paths/cdn/sign/file.yml'
+
+components:
+  schemas:
+    FolderSigningResourceResponse:
+      $ref: './components/schemas/cdn/sign/response/SigningResourceResponse.yml'
+    FolderSigningRequest:
+      $ref: './components/schemas/cdn/sign/request/FolderSigningRequest.yml'
+    ErrorResourceResponse:
+      $ref: './components/schemas/error/ErrorResourceResponse.yml'

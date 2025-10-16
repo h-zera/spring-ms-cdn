@@ -14,6 +14,16 @@ CREATE TABLE public.O_EXAMPLES (
                                    CONSTRAINT O_EXAMPLES_PKEY PRIMARY KEY (ID)
 );
 
+CREATE TABLE public.CLIENTS (
+    id SERIAL NOT NULL,
+    client_id VARCHAR(255) NOT NULL,
+    client_secret_hash VARCHAR(1000) NOT NULL,
+    CREATION_TIME TIMESTAMP default CURRENT_TIMESTAMP,
+    UPDATED_TIME TIMESTAMP default CURRENT_TIMESTAMP,
+    CONSTRAINT CLIENTS_PKEY PRIMARY KEY (id),
+    CONSTRAINT CLIENTS_UQ1 UNIQUE (client_id)
+);
+
 comment on table O_EXAMPLES is
     'Tabla que contiene los ejemplos';
 

@@ -1,0 +1,7 @@
+type: object
+title: ErrorResourceResponse
+required:
+    - error
+properties:
+  error:
+    $ref: './ErrorResource.yml'
