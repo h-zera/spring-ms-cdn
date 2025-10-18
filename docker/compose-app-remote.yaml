@@ -10,7 +10,7 @@ services:
     container_name: boot
     restart: unless-stopped
     env_file:
-      - '../env/.env'
+      - '../env/.env.dev'
     environment:
       SPRING_ACTIVE_PROFILE: ${SPRING_PROFILE}
       SPRING_DATASOURCE_URL: jdbc:postgresql://${DB_DOMAIN}/${DB_NAME}

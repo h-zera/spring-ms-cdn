@@ -14,6 +14,9 @@ properties:
     description: The query parameters to be appended to the URL for accessing the signed resource
     items:
       type: object
+      required:
+        - param
+        - value
       properties:
         param:
           type: string
@@ -23,7 +26,6 @@ properties:
           description: The value of the query parameter
         alternateValue:
           type: string
-          nullable: true
           description: An alternate value for the query parameter, if applicable
     example:
         - param: token

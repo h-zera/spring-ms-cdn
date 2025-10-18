@@ -57,6 +57,16 @@
         <artifactId>spring-ms-cdn-api-rest</artifactId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
+      <dependency>
+        <groupId>com.hzera</groupId>
+        <artifactId>spring-ms-cdn-bunny-cdn</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.hzera</groupId>
+        <artifactId>spring-ms-cdn-redis-cache</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
@@ -78,5 +88,7 @@
     <module>common</module>
     <module>driven/postgres</module>
     <module>driver/api-rest</module>
+    <module>driven/bunny-cdn</module>
+    <module>driven/redis-cache</module>
   </modules>
 </project>
