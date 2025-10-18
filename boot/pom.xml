@@ -37,6 +37,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+
+      <dependency>
+        <groupId>com.hzera</groupId>
+        <artifactId>spring-ms-cdn-bunny-cdn</artifactId>
+      </dependency>
+
+      <dependency>
+        <groupId>com.hzera</groupId>
+        <artifactId>spring-ms-cdn-redis-cache</artifactId>
+      </dependency>
     </dependencies>
 
     <properties>

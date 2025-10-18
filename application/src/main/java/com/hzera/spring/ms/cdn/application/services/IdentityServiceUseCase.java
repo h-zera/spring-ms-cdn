@@ -1,6 +1,6 @@
 package com.hzera.spring.ms.cdn.application.services;
 
-import com.hzera.spring.ms.cdn.application.exceptions.ClientNotFoundException;
+import com.hzera.spring.ms.cdn.application.exceptions.client.ClientNotFoundException;
 import com.hzera.spring.ms.cdn.application.ports.driven.IdentityRepositoryPort;
 import com.hzera.spring.ms.cdn.application.ports.driver.IdentityServicePort;
 import com.hzera.spring.ms.cdn.domain.entity.identity.ClientEntity;
