@@ -40,3 +40,18 @@ CREATE TABLE public.cdn_scope_path(
   subpaths_count integer default 0,
     constraint cdn_scope_path_uk1 unique (config_id, path)
 );
+
+DROP TABLE public.cdn_resource;
+
+CREATE TABLE public.cdn_resource(
+    token_hash VARCHAR(255) PRIMARY KEY ,
+    config_id uuid REFERENCES public.client_cdn_config(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP NOT NULL,
+    path VARCHAR(2000) NOT NULL,
+    is_folder bool NOT NULL,
+    remote_ip VARCHAR(100),
+    query_params VARCHAR(2000) NOT NULL,
+    requester_ip VARCHAR(100),
+    mounted_url VARCHAR(4050) NOT NULL
+);

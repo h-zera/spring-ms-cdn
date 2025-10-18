@@ -14,7 +14,6 @@ import org.hibernate.annotations.Parameter;
 
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -61,4 +60,7 @@ public class ClientConfigMO {
 
     @OneToMany(mappedBy = "clientConfig")
     private List<CdnScopePathMO> scopePaths;
+
+    @OneToMany(mappedBy = "clientConfig", fetch = FetchType.LAZY)
+    private List<CdnResourceMO> cdnResources;
 }
