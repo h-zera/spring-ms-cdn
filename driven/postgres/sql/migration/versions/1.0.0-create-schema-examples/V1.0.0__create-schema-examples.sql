@@ -1,18 +1,3 @@
-/*==============================================================*/
-/* Table: O_EXAMPLES                                              */
-/*==============================================================*/
-
-CREATE TYPE identification_type AS ENUM ('DNI', 'NIE');
-
-CREATE TABLE public.O_EXAMPLES (
-                                   ID BIGSERIAL NOT NULL,
-                                   CREATION_TIME TIMESTAMP NULL,
-                                   DESCRIPTION VARCHAR(255) NULL,
-                                   IDENTIFICATION VARCHAR(255) NULL,
-                                   IDENTIFICATION_TYPE identification_type NULL,
-                                   NAME VARCHAR(255) NULL,
-                                   CONSTRAINT O_EXAMPLES_PKEY PRIMARY KEY (ID)
-);
 
 CREATE TABLE public.CLIENTS (
     id SERIAL NOT NULL,
@@ -24,24 +9,34 @@ CREATE TABLE public.CLIENTS (
     CONSTRAINT CLIENTS_UQ1 UNIQUE (client_id)
 );
 
-comment on table O_EXAMPLES is
-    'Tabla que contiene los ejemplos';
+DROP TYPE IF EXISTS allowed_feature;
 
-comment on column O_EXAMPLES.ID is
-    'Código del ejemplo.';
+CREATE TYPE allowed_feature AS ENUM (
+    'FILE_SIGNING_ACCESS',
+    'FOLDER_SIGNING_ACCESS',
+    'ALL_CONFIGS',
+    'EXPIRATION_CONFIG',
+    'RED_RESTRICTION_CONFIG'
+);
 
-comment on column O_EXAMPLES.CREATION_TIME is
-    'Fecha de creación del ejemplo.';
+DROP TABLE IF EXISTS public.client_cdn_config CASCADE;
 
-comment on column O_EXAMPLES.DESCRIPTION is
-    'descripción del ejemplo.';
+CREATE TABLE public.client_cdn_config (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  client_id varchar(255) UNIQUE NOT NULL,
+  allowed_features allowed_feature[] NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  is_admin bool DEFAULT false,
+  is_banned bool DEFAULT false,
+  is_disabled bool DEFAULT true
+);
 
-comment on column O_EXAMPLES.IDENTIFICATION is
-    'Identificación del ejemplo.';
-
-comment on column O_EXAMPLES.IDENTIFICATION_TYPE is
-    'Tipo de identificación del ejemplo.';
-
-comment on column O_EXAMPLES.NAME is
-    'Nombre del ejemplo.';
-
+CREATE TABLE public.cdn_scope_path(
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  config_id uuid REFERENCES public.client_cdn_config(id) ON DELETE CASCADE,
+  path varchar(2000) NOT NULL,
+  is_folder bool NOT NULL,
+  subpaths_count integer default 0,
+    constraint cdn_scope_path_uk1 unique (config_id, path)
+);
