@@ -41,8 +41,6 @@ CREATE TABLE public.cdn_scope_path(
     constraint cdn_scope_path_uk1 unique (config_id, path)
 );
 
-DROP TABLE public.cdn_resource;
-
 CREATE TABLE public.cdn_resource(
     token_hash VARCHAR(255) PRIMARY KEY ,
     config_id uuid REFERENCES public.client_cdn_config(id) ON DELETE CASCADE,

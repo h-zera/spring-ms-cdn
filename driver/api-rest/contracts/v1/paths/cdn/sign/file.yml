@@ -2,6 +2,8 @@ post:
   summary: Signing CDN file
   description: Generates a signed URL string that can be used to access a specific CDN file
   operationId: signCdnFile
+  security:
+    - bearerAuth: ["cdn:sign"]
   tags:
     - CdnSign
   requestBody:
