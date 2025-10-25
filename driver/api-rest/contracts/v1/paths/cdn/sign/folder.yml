@@ -2,6 +2,8 @@ post:
   summary: Signing CDN folder
   description: Generates a signed URL string that can be used to access all CDN files in a folder
   operationId: signCdnFolder
+  security:
+    - bearerAuth: ["cdn:sign"]
   tags:
     - CdnSign
   requestBody:

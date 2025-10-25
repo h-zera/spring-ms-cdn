@@ -25,3 +25,8 @@ components:
       $ref: './components/schemas/cdn/sign/request/FolderSigningRequest.yml'
     ErrorResourceResponse:
       $ref: './components/schemas/error/ErrorResourceResponse.yml'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,7 +1,6 @@
 package com.hzera.spring.ms.cdn.driver.api.rest.v1.adapters.cdn.sign;
 
 import com.hzera.spring.ms.cdn.application.ports.driver.CdnServicePort;
-import com.hzera.spring.ms.cdn.domain.entity.identity.ClientEntity;
 import com.hzera.spring.ms.cdn.driver.api.rest.v1.mappers.CdnDTOMapper;
 import com.hzera.spring.ms.cdn.driver.api.rest.v1.openapi.cdn.sign.CdnSignApi;
 import com.hzera.spring.ms.cdn.driver.api.rest.v1.openapi.cdn.sign.model.FileSigningRequest;
@@ -12,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,12 +27,12 @@ public class SignControllerAdapter implements CdnSignApi {
     @Override
     public ResponseEntity<SigningResourceResponse> signCdnFile(FileSigningRequest fileSigningRequest) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
-        var client = (ClientEntity) securityContext.getAuthentication().getCredentials();
+        var jwt = (Jwt) securityContext.getAuthentication().getPrincipal();
 
         var configEntity = cdnDTOMapper.toConfigEntity(fileSigningRequest.getConfig());
 
         var cdnResource = cdnServicePort.getCdnResource(
-                client.getClientId(),
+                jwt.getSubject(),
                 fileSigningRequest.getFilePath(),
                 configEntity
         );
@@ -45,12 +45,12 @@ public class SignControllerAdapter implements CdnSignApi {
     @Override
     public ResponseEntity<SigningResourceResponse> signCdnFolder(FolderSigningRequest folderSigningRequest) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
-        var client = (ClientEntity) securityContext.getAuthentication().getCredentials();
+        var jwt = (Jwt) securityContext.getAuthentication().getPrincipal();
 
         var configEntity = cdnDTOMapper.toConfigEntity(folderSigningRequest.getConfig());
 
         var cdnResource = cdnServicePort.getCdnResource(
-                client.getClientId(),
+                jwt.getSubject(),
                 folderSigningRequest.getFolderPath(),
                 configEntity
         );

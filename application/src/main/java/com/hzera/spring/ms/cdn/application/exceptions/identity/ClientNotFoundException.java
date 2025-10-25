@@ -1,4 +1,4 @@
-package com.hzera.spring.ms.cdn.application.exceptions.client;
+package com.hzera.spring.ms.cdn.application.exceptions.identity;
 
 import com.hzera.spring.ms.cdn.common.domain.HZeraBusinessException;
 
